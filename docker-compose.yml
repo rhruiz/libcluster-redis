@@ -1,0 +1,17 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    ports:
+      - 6379
+
+  node:
+    image: elixir
+    depends_on:
+      - redis
+    links:
+      - redis
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bash -c 'iex --erl "-name myapp@$$(hostname -i) -setcookie test" -S mix do local.hex --force, run'
