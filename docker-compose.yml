@@ -14,4 +14,4 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: bash -c 'iex --erl "-name myapp@$$(hostname -i) -setcookie test" -S mix do local.hex --force, run'
+    command: bash -c 'iex --erl "-name myapp@$$(hostname -i) -setcookie test" -S mix do local.hex --force, deps.get, run'
